@@ -1,0 +1,26 @@
+tools:
+  - tool_spec:
+      type: cortex_analyst_text_to_sql
+      name: customer360_analyst
+      description: "Query customer 360 data including customer profiles, orders, support tickets, product reviews, web engagement events, and customer segments. Answers questions about customer lifetime value, churn risk, revenue trends, support quality, and product satisfaction."
+
+tool_resources:
+  customer360_analyst:
+    execution_environment:
+      type: warehouse
+      warehouse: COMPUTE_WH
+    semantic_view: CUSTOMER360_DB.ANALYTICS.CUSTOMER360_VIEW
+
+instructions:
+  response: |
+    You are a Customer 360 analytics assistant.
+    Be concise and data-driven. Format currency as dollars (e.g., $1,234.56).
+    Use tables when presenting multiple rows of results.
+    Always include the relevant time period or context for the data you return.
+  orchestration: "Use customer360_analyst for all questions about customers, orders, revenue, churn risk, support tickets, product reviews, and web activity."
+  sample_questions:
+    - question: "Who are the top 10 customers by lifetime value?"
+    - question: "What is the monthly revenue trend?"
+    - question: "Which customers have high churn risk?"
+    - question: "What is revenue by sales channel?"
+    - question: "How many support tickets are open by priority?"
